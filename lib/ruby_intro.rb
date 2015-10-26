@@ -1,5 +1,5 @@
 # When done, submit this entire file to the autograder.
-
+# Adding more comments just to test git
 # Part 1
 
 def sum arr
