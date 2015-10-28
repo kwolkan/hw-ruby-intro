@@ -56,21 +56,37 @@ end
 
 def starts_with_consonant? s
   # YOUR CODE HERE
+  # takes a string and returns true if it starts with a consonant and false otherwise. 
+  # (For our purposes, a consonant is any letter other than A, E, I, O, U.) NOTE: be sure it works for both upper and lower case and for nonletters!
+  (s =~ /\A[^AEIOUaeiou]/ and s =~ /\A[a-zA-Z]/) ? (return true) : (return false)
 end
 
 def binary_multiple_of_4? s
   # YOUR CODE HERE
+  # takes a string and returns true if the string represents a binary number that is a multiple of 4. 
+  # NOTE: be sure it returns false if the string is not a valid binary number!
+  (s =~ /[^01]/ || s.length == 0) ? (return false) : (return s.to_i(2)%4==0)
 end
 
 # Part 3
 
 class BookInStock
 # YOUR CODE HERE
+  attr_accessor :isbn
+  attr_accessor :price
+  
+  def initialize(isbn, price)
+    raise ArgumentError  if (isbn.length == 0 || price <= 0.0)
+    @isbn = isbn
+    @price = price
+  end
+  
+  def price_as_string
+    "$#{format("%.2f", @price)}"
+  end
+    
 end
 
-puts sum_to_n? [3,5,1,0,6,7,8,9], 9
+book = BookInStock.new("xxx-yyy-123", 1.0)
+puts book.price_as_string
 
-puts(sum_to_n?([1,2,3,4,5], 5)) #.to be true
-puts(sum_to_n?([3,0,5], 5)) #.to be true
-puts(sum_to_n?([-1,-2,3,4,5,-8], 12)) #.to be false
-puts(sum_to_n?([-1,-2,3,4,6,-8], 12)) #.to be false
